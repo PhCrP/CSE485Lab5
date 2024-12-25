@@ -9,7 +9,13 @@
         </p>
     </header>
 
-    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+    @if (session('success'))
+    <div class="mt-3" style="background-color: #D1FAE5; color: #065F46; padding: 1rem; border-radius: 0.5rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    <form method="post" action="{{ route('password.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('put')
 
@@ -35,13 +41,12 @@
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+            <p
+                x-data="{ show: true }"
+                x-show="show"
+                x-transition
+                x-init="setTimeout(() => show = false, 2000)"
+                class="text-sm text-gray-600">{{ __('Saved.') }}</p>
             @endif
         </div>
     </form>
