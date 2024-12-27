@@ -9,12 +9,6 @@
         </p>
     </header>
 
-    @if (session('success'))
-    <div class="mt-3" style="background-color: #D1FAE5; color: #065F46; padding: 1rem; border-radius: 0.5rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
-        {{ session('success') }}
-    </div>
-    @endif
-
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
