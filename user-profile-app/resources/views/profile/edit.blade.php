@@ -5,6 +5,16 @@
         </h2>
     </x-slot>
 
+    @if (session('success'))
+    <div class="mt-3" style="background-color: #D1FAE5; color: #065F46; padding: 1rem; border-radius: 0.5rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+        {{ session('success') }}
+    </div>
+    @elseif (session('successpw'))
+    <div class="mt-3" style="background-color: #D1FAE5; color: #065F46; padding: 1rem; border-radius: 0.5rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+        {{ session('successpw') }}
+    </div>
+    @endif
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

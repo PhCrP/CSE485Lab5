@@ -35,10 +35,10 @@
                 @if ($user->avatar)
                 <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : 'https://via.placeholder.com/64' }}"
                     alt="Avatar"
-                    class="w-16 h-16 rounded-full object-cover border border-gray-300">
+                    class="w-20 h-20 rounded-full object-cover border border-gray-300 mr-4">
                 @else
                 <img src="https://via.placeholder.com/64" alt="Default Avatar"
-                    class="w-16 h-16 rounded-full object-cover border border-gray-300">
+                    class="w-20 h-20 rounded-full object-cover border border-gray-300 mr-4">
                 @endif
             </div>
         </div>
@@ -50,6 +50,7 @@
             <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
         </div>
+
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
