@@ -43,14 +43,19 @@
             </div>
         </div>
 
-        <div>
-            <input type="file" name="avatar" id="avatar"
-                class="mt-2 block w-full text-sm text-gray-600 border border-gray-300 rounded-md cursor-pointer focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+        <div class="mt-4">
+            <label for="avatar" class="block text-sm font-medium text-gray-700">Upload Avatar</label>
+            <div class="mt-2">
+                <input
+                    type="file"
+                    name="avatar"
+                    id="avatar"
+                    class="block focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer">
+            </div>
             @error('avatar')
-            <span class="text-red-500 text-sm">{{ $message }}</span>
+            <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
             @enderror
         </div>
-
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
