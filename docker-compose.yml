@@ -22,7 +22,7 @@ services:
     container_name: mysql-laravel-up
     environment:
       MYSQL_ROOT_PASSWORD: 123456789
-      MYSQL_DATABASE: taskapp
+      MYSQL_DATABASE: user-profile-app
     ports:
       - "3306:3306"
     networks:
