@@ -7,13 +7,15 @@ services:
       dockerfile: Dockerfile
     container_name: php-laravel-up
     volumes:
-      - ./user-profile-app:/var/www/html
+      - ./user-profile-app:/var/www/html:delegated # Sử dụng `delegated` để ưu tiên hiệu suất
     ports:
       - "8080:80"
     networks:
       - web
     environment:
-      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
+    depends_on:
+      - mysql # Đảm bảo MySQL chạy trước khi PHP bắt đầu
 
   mysql:
     image: mysql:8.0
@@ -27,6 +29,7 @@ services:
       - web
     volumes:
       - mysql-data:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password' # Giảm độ trễ kết nối
 
 networks:
   web:
