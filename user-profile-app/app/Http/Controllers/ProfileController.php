@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::pluck('id');
         return view('profile.show', compact('user'));
     }
 
@@ -39,12 +39,10 @@ class ProfileController extends Controller
         $user->bio = $request->bio;
 
         if ($request->hasFile('avatar')) {
-            // Xóa ảnh cũ nếu có
             if ($user->avatar) {
                 Storage::delete($user->avatar);
             }
 
-            // Lưu ảnh mới
             $path = $request->file('avatar')->store('avatars', 'public');
             $user->avatar = $path;
         }
