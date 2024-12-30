@@ -15,7 +15,9 @@ services:
     environment:
       APACHE_DOCUMENT_ROOT: /var/www/html/public
     depends_on:
-      - mysql # Đảm bảo MySQL chạy trước khi PHP bắt đầu
+      - mysql
+      - redis # Thêm Redis vào dependencies
+    restart: unless-stopped
 
   mysql:
     image: mysql:8.0
@@ -30,6 +32,14 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     command: '--default-authentication-plugin=mysql_native_password' # Giảm độ trễ kết nối
+
+  redis:
+    image: redis:alpine
+    container_name: redis-laravel-up
+    ports:
+      - "6379:6379"
+    networks:
+      - web
 
 networks:
   web:
