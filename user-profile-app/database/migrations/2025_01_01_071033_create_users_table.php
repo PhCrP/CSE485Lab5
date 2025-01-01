@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('staff_id')->nullable(); // Khóa ngoại liên kết với bảng staff
+            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('set null');
+            $table->enum('role', ['admin', 'staff', 'guest'])->default('guest'); // Thêm cột role
             $table->string('bio')->nullable();
             $table->string('avatar')->nullable();
             $table->rememberToken();
@@ -45,7 +48,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
     }
 };
